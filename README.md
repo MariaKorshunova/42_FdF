@@ -1,17 +1,15 @@
 # Fdf
 **Status:** in progress
+
 **Grade:** not evaluated
 
 FdF school42
 
-Wireframe model. This project is about representing a landscape as a 3D object
-in which all surfaces are outlined in lines.
-
-## Useful souces
-
-https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
+Wireframe model. This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.
 
 ## MinilibX
+
+Useful sources: https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 
 man /usr/share/man/man3/mlx.1
 
@@ -43,3 +41,50 @@ Introduction to Minilibx:
 		mlx_key_hook(win_ptr, deal_key, (void *)0);
 		mlx_loop(mlx_ptr);
 	}
+
+## Parsing maps
+
+## Colors
+
+TRGB: 0xTTRRGGBB
+* T - transparency
+* R - red component
+* G - green component
+* B - blue component
+
+RGB:
+* Red - 0x00FF0000
+* Green - 0x0000FF00
+* Blue - 0x000000FF
+
+## Draw a line
+
+* Bresenham's line algorithm - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+* Xiaolin Wu's line algorithm - https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
+
+
+Checking draw line function with ft_asterisk:
+
+	void	ft_asterisk(t_img *img, t_coord center, int r, int color)
+	{
+		t_coord	p;
+		double	alpha;
+		int		i;
+
+		alpha = 0;
+		i = 0;
+		while (i < 12)
+		{
+			p.x = (int)(center.x + r * cos(alpha));
+			p.y = (int)(center.y + r * sin(alpha));
+			ft_line(img, center, p, color);
+			alpha += M_PI / 6;
+			i++;
+		}
+	}
+
+## Isometric projection
+	
+	x = (x - y) * cos(a)
+
+	y = (x + y) / 2 * sin(b)

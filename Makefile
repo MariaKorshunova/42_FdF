@@ -6,7 +6,7 @@
 #    By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 19:11:05 by jmabel            #+#    #+#              #
-#    Updated: 2022/03/14 19:37:44 by jmabel           ###   ########.fr        #
+#    Updated: 2022/03/20 19:54:06 by jmabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,16 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 
-SRCS		=	fdf.c
+SRCS		=	fdf.c	read_map.c	put_image.c\
+				array_operations.c\
+				./get_next_line/get_next_line.c
 
 LIBFT		=	./libft/libft.a
 LMLX		=	/usr/local/lib/ -lmlx -framework OpenGL -framework Appkit
 
 OBJ			=	$(SRCS:%.c=%.o)
 
-all			:	$(NAME) 
+all			:	$(NAME)
 
 $(NAME)		:	$(OBJ) $(LIBFT)
 	$(CC) $(OBJ) -L ./libft -lft -L $(LMLX) -o $(NAME)
