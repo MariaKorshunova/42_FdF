@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:13:17 by jmabel            #+#    #+#             */
-/*   Updated: 2022/03/20 19:52:13 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/03/21 19:53:03 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,57 +38,41 @@ static int	ft_open_map(int argc, char **argv)
 	return (fd);
 }
 
-static void	read_row(t_fdf *fdf, char **line, int column)
+void	ft_define_column_row(t_map *map)
 {
-	char	**row;
-	int		line_column;
+	int	ret;
 
-	line_column = ft_str_count(*line, ' ');
-	if (column != line_column)
+	ret = 1;
+	map->column = -1;
+	map->row = 0;
+	while (ret)
 	{
-		ft_putstr_fd("Error: Invalid map\n", 2);
-		//clear fdf.maps
-		//clear fdf.colors
-		free(*line);
-		close(fdf->fd);
-		exit (1);
+		map->line = get_next_line(map->fd);
+		if (map->line == NULL)
+			ret = 0;
+		else
+		{
+			if (map->column == -1)
+				map->column = ft_count_column(map->line, ' ');
+			else
+			{
+				if (ft_count_column(map->line, ' ') != map->column)
+					ft_error_map(map, 'm');
+			}
+			(map->row)++;
+		}
+		free(map->line);
 	}
-	row = ft_split(*line, ' ');
-	if (!row)
-	{
-		perror("Error");
-		//очистить fdf.maps
-		//clear fdf.colors
-		free(*line);
-		close(fdf->fd);
-		exit (1);
-	}
-	// ft_read_cell(fdf, row); Just do it :-)
-	ft_free_char_array(row, line_column);
+	close(map->fd);
 }
 
 void	ft_read_map(t_fdf *fdf, int argc, char **argv)
 {
-	int		ret;
-	char	*line;
-	int		column;
+	t_map	map;
 
 	(void) fdf;
-	fdf->fd = ft_open_map(argc, argv);
-	ret = 1;
-	column = -1;
-	while (ret)
-	{
-		line = get_next_line(fdf->fd);
-		if (line == NULL)
-			ret = 0;
-		else
-		{
-			if (column == -1)
-				column = ft_str_count(line, ' ');
-			read_row(fdf, &line, column);
-		}
-		free(line);
-	}
-	close(fdf->fd);
+	map.fd = ft_open_map(argc, argv);
+	ft_define_column_row(&map);
+	if (map.column == 0 || map.row == 0)
+		ft_error_map(&map, 'm');
 }

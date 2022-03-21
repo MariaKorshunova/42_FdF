@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/03/20 19:53:37 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/03/21 18:27:15 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ typedef struct s_fdf
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int		**maps;
-	char	**colors;
-	int		fd;
+	int		**map;
+	char	**color;
 }	t_fdf;
 
 typedef struct s_img
@@ -46,12 +45,21 @@ typedef struct s_coord
 	int	y;
 }	t_coord;
 
+typedef struct s_map
+{
+	int		fd;
+	int		column;
+	int		row;
+	char	*line;
+}	t_map;
+
 void	ft_read_map(t_fdf *fdf, int argc, char **argv);
+void	ft_error_map(t_map *map, char error);
+int		ft_check_int(char *str);
 
 void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
 void	ft_line(t_img *img, t_coord p1, t_coord p2, int color);
 
-int		ft_str_count(char const *s, char c);
-void	ft_free_char_array(char **arr, size_t len);
+int		ft_count_column(char const *s, char c);
 
 #endif
