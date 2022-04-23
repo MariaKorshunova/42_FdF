@@ -88,3 +88,20 @@ Checking draw line function with ft_asterisk:
 	x = (x - y) * cos(a)
 
 	y = (x + y) / 2 * sin(b)
+
+
+
+
+// 			i = 0;
+// 			while (i < map->column)
+// 			{
+// 				fdf->map[map_line][i] = ft_define_altitude(fdf, map, arr[i]);
+// 				ft_putnbr_fd(fdf->map[map_line][i], 1);
+// 				ft_putstr_fd(" ", 1);
+// 				i++;
+// 			}
+// 			map_line++;
+// 			ft_putstr_fd("\n", 1);
+// 		}
+// 		free(map->line);
+// 	}

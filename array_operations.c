@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 19:52:53 by jmabel            #+#    #+#             */
-/*   Updated: 2022/03/21 19:44:57 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/23 20:50:05 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,24 @@ int	ft_count_column(char const *s, char c)
 		i++;
 	}
 	return (count);
+}
+
+void	ft_free_int_array(int **arr, int row)
+{
+	int	i;
+
+	i = 0;
+	while (i < row)
+		free(arr[i++]);
+	free(arr);
+}
+
+void	ft_free_char_array(char **arr, int row)
+{
+	int	i;
+
+	i = 0;
+	while (i < row)
+		free(arr[i++]);
+	free(arr);
 }

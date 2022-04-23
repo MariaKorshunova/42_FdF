@@ -6,7 +6,7 @@
 #    By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 19:11:05 by jmabel            #+#    #+#              #
-#    Updated: 2022/03/21 16:16:32 by jmabel           ###   ########.fr        #
+#    Updated: 2022/04/23 19:02:33 by jmabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 
-SRCS		=	fdf.c	read_map.c	maps_error.c\
+SRCS		=	fdf.c	map_read.c	map_error.c	map_define_value.c\
 				put_image.c\
 				array_operations.c\
 				./get_next_line/get_next_line.c
