@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/23 21:03:34 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/24 20:39:21 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,11 @@ void	ft_line(t_img *img, t_coord p1, t_coord p2, int color);
 void	ft_free_int_array(int **arr, int len);
 void	ft_free_char_array(char **arr, int row);
 int		ft_count_column(char const *s, char c);
+
+/*  ft_atoi_base10.c  */
+int		ft_atoi_base_10(t_fdf *fdf, char *str, char **map_line, char **cell);
+
+/* ft_atoi_base16.c */
+int		ft_atoi_base_16(t_fdf *fdf, char *str, char **map_line, char **cell);
 
 #endif

@@ -92,16 +92,25 @@ Checking draw line function with ft_asterisk:
 
 
 
-// 			i = 0;
-// 			while (i < map->column)
-// 			{
-// 				fdf->map[map_line][i] = ft_define_altitude(fdf, map, arr[i]);
-// 				ft_putnbr_fd(fdf->map[map_line][i], 1);
-// 				ft_putstr_fd(" ", 1);
-// 				i++;
-// 			}
-// 			map_line++;
-// 			ft_putstr_fd("\n", 1);
-// 		}
-// 		free(map->line);
-// 	}
+## function for print two-dimensional  int array(base = dec(10) or hec(16))
+	void	ft_print_int_array(int **arr, int row, int column, int base)
+	{
+		int	i;
+		int	j;
+
+		i = 0;
+		while (i < row)
+		{
+			j = 0;
+			while (j < column)
+			{
+				if (base == 10)
+					printf("%2d ", arr[i][j]);
+				if (base == 16)
+					printf("%6x ", arr[i][j]);
+				j++;
+			}
+			printf("\n");
+			i++;
+		}
+	}
