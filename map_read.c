@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:00:09 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/24 20:37:21 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/25 16:15:06 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,4 @@ void	ft_read_map(t_fdf *fdf, int argc, char **argv)
 	}
 	fdf->fd = ft_open_map(argc, argv, 's');
 	ft_fill_color_map(fdf);
-	ft_print_int_array(fdf->map, fdf->row, fdf->column, 10);
-	ft_print_int_array(fdf->color, fdf->row, fdf->column, 16);
 }
