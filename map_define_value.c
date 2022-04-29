@@ -6,15 +6,22 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:02:06 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/24 20:37:05 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/29 20:01:57 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	ft_fill_value(t_fdf *fdf, char **map_line, int nb_line)
+static void	ft_define_maxmin_altitude(t_fdf *fdf, int line, int i)
 {
-	char	**cell;
+	if (fdf->map[line][i] > fdf->max_alt)
+		fdf->max_alt = fdf->map[line][i];
+	if (fdf->map[line][i] < fdf->min_alt)
+		fdf->min_alt = fdf->map[line][i];
+}
+
+static void	ft_fill_value(t_fdf *fdf, t_pars *parser, int line)
+{
 	int		i;
 	int		is_color;
 
@@ -22,28 +29,27 @@ static void	ft_fill_value(t_fdf *fdf, char **map_line, int nb_line)
 	is_color = 0;
 	while (i < fdf->column)
 	{
-		cell = ft_split(map_line[i], ',');
-		if (!cell)
+		parser->cell = ft_split((parser->map_line)[i], ',');
+		if (!(parser->cell))
 		{
-			ft_free_char_array(map_line, fdf->column);
-			ft_error_allocate_arr(fdf, 'p');
+			ft_free_char_array(parser->map_line, fdf->column);
+			ft_error_allocate_arr(fdf, parser, 'p');
 		}
-		fdf->map[nb_line][i] = ft_atoi_base_10(fdf, cell[0], map_line, cell);
-		fdf->color[nb_line][i] = ft_atoi_base_16(fdf, cell[1], map_line, cell);
-		if (cell[1] != '\0')
+		fdf->map[line][i] = ft_atoi_base_10(fdf, parser, (parser->cell)[0]);
+		ft_define_maxmin_altitude(fdf, line, i);
+		fdf->color[line][i] = ft_atoi_base_16(fdf, parser, (parser->cell)[1]);
+		if ((parser->cell)[1] != '\0')
 			is_color = 1;
-		ft_free_char_array(cell, is_color + 1);
+		ft_free_char_array(parser->cell, is_color + 1);
 		i++;
 	}
 }
 
-void	ft_define_map_value(t_fdf *fdf, int nb_line)
+void	ft_define_map_value(t_fdf *fdf, t_pars *parser, int nb_line)
 {
-	char	**map_line;
-
-	map_line = ft_split(fdf->line, ' ');
-	if (!map_line)
-		ft_error_allocate_arr(fdf, 'p');
-	ft_fill_value(fdf, map_line, nb_line);
-	ft_free_char_array(map_line, fdf->column);
+	parser->map_line = ft_split(parser->line, ' ');
+	if (!(parser->map_line))
+		ft_error_allocate_arr(fdf, parser, 'p');
+	ft_fill_value(fdf, parser, nb_line);
+	ft_free_char_array(parser->map_line, fdf->column);
 }

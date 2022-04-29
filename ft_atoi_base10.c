@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:12:58 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/24 20:12:18 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/29 18:22:21 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static	int	ft_create_nb(const char *str, int *i, long long *nb)
 	return (nb_digit);
 }
 
-int	ft_atoi_base_10(t_fdf *fdf, char *str, char **map_line, char **cell)
+int	ft_atoi_base_10(t_fdf *fdf, t_pars *parser, char *str)
 {
 	int				i;
 	int				minus;
@@ -55,10 +55,10 @@ int	ft_atoi_base_10(t_fdf *fdf, char *str, char **map_line, char **cell)
 	nb_digit = 0;
 	minus = ft_atoi_sign(str, &i);
 	if (str[i] == '\0')
-		ft_error_allocate_cell(fdf, map_line, cell, 'm');
+		ft_error_allocate_cell(fdf, parser, 'm');
 	nb_digit = ft_create_nb(str, &i, &nb);
 	if (str[i] != '\0' || (nb > 2147483647 && minus == 1)
 		|| (nb > 2147483648 && minus == -1) || nb_digit > 11)
-		ft_error_allocate_cell(fdf, map_line, cell, 'm');
+		ft_error_allocate_cell(fdf, parser, 'm');
 	return (minus * nb);
 }

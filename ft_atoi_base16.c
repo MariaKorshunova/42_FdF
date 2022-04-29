@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 20:04:51 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/24 20:27:02 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/29 19:58:00 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	ft_create_nb_base_16(char *str, int *i, long long *nb)
 	return (nb_digit);
 }
 
-int	ft_atoi_base_16(t_fdf *fdf, char *str, char **map_line, char **cell)
+int	ft_atoi_base_16(t_fdf *fdf, t_pars *parser, char *str)
 {
 	int			i;
 	long long	nb;
@@ -61,16 +61,16 @@ int	ft_atoi_base_16(t_fdf *fdf, char *str, char **map_line, char **cell)
 	i = 0;
 	nb = 0;
 	if (!str)
-		return (0xffffff);
+		return (0);
 	while (!(ft_isprint(str[i])))
 		i++;
 	if (str[i++] != '0')
-		ft_error_allocate_cell(fdf, map_line, cell, 'm');
+		ft_error_allocate_cell(fdf, parser, 'm');
 	if (str[i++] != 'x')
-		ft_error_allocate_cell(fdf, map_line, cell, 'm');
+		ft_error_allocate_cell(fdf, parser, 'm');
 	ft_str_tolower(&str);
 	nb_digit = ft_create_nb_base_16(str, &i, &nb);
 	if (str[i] != '\0' || nb_digit > 6)
-		ft_error_allocate_cell(fdf, map_line, cell, 'm');
+		ft_error_allocate_cell(fdf, parser, 'm');
 	return (nb);
 }

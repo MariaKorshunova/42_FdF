@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:25:58 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/25 15:25:23 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/29 20:04:58 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	// t_coord	p1;
 
 	ft_read_map(&fdf, argc, argv);
+	ft_set_colors(&fdf);
 	// p0.x = 0;
 	// p0.y = 0;
 	// p1.x = 500;

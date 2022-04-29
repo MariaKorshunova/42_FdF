@@ -6,38 +6,48 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:00:51 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/24 18:45:51 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/29 18:40:21 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_error_map(t_fdf *fdf, char error)
+void	ft_exit_fdf(char error)
 {
 	if (error == 'm')
 		ft_putstr_fd("Error: Invalid map\n", 2);
 	else if (error == 'p')
 		perror("Error");
-	free(fdf->line);
-	close(fdf->fd);
 	exit (1);
 }
 
-void	ft_error_allocate_arr(t_fdf *fdf, char error)
+void	ft_error_map_close(t_pars *parser, char error)
+{
+	close(parser->fd);
+	ft_exit_fdf(error);
+}
+
+void	ft_error_map(t_pars *parser, char error)
+{
+	free(parser->line);
+	ft_error_map_close(parser, error);
+}
+
+void	ft_error_allocate_arr(t_fdf *fdf, t_pars *parser, char error)
 {
 	ft_free_int_array(fdf->map, fdf->row);
 	ft_free_int_array(fdf->color, fdf->row);
-	ft_error_map(fdf, error);
+	ft_error_map(parser, error);
 }
 
-void	ft_error_allocate_cell(t_fdf *fdf, char **line, char **cell, char error)
+void	ft_error_allocate_cell(t_fdf *fdf, t_pars *parser, char error)
 {
 	int	is_color;
 
 	is_color = 0;
-	if (cell[1] != '\0')
+	if ((parser->cell)[1] != '\0')
 		is_color = 1;
-	ft_free_char_array(cell, is_color + 1);
-	ft_free_char_array(line, fdf->column);
-	ft_error_allocate_arr(fdf, error);
+	ft_free_char_array(parser->cell, is_color + 1);
+	ft_free_char_array(parser->map_line, fdf->column);
+	ft_error_allocate_arr(fdf, parser, error);
 }

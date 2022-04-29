@@ -7,6 +7,15 @@ FdF school42
 
 Wireframe model. This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.
 
+##	launch MacOS
+
+	git clone https://github.com/MariaKorshunova/FdF.git
+	cd FdF
+	git clone https://github.com/MariaKorshunova/libft.git
+	git clone https://github.com/MariaKorshunova/get_next_line.git
+	make
+	./fdf you_map.fdf
+
 ## Project execution steps
 
 ### Step 1. Parsing maps and error management
@@ -55,8 +64,8 @@ You can check yourself at the end of this step with the **function whis prints t
 
 ## Step 2. Color definition based on altitude
 
-- [ ] Define max altitude value
-- [ ] Define value of [R, G, B] in RGB: r =  LOW_R + (altitude / max_altitude) * (HIGH_R - LOW_R)
+- [X] Define max and min altitude value
+- [X] Define value of [R, G, B] in RGB: r =  LOW_R + coeff_minimax_normalization_altitude * (HIGH_R - LOW_R)
 - [ ] Define value in color use BitShifting
 
 ## Step 3. Include MinilibX

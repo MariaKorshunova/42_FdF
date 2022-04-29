@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:00:09 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/25 16:15:06 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/04/29 20:00:16 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,10 @@ static int	ft_open_map(int argc, char **argv, char check)
 		}
 	}
 	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error");
-		exit (1);
-	}
 	return (fd);
 }
 
-static void	ft_define_column_row(t_fdf *fdf)
+static void	ft_define_column_row(t_fdf *fdf, t_pars *parser)
 {
 	int	ret;
 
@@ -50,23 +45,23 @@ static void	ft_define_column_row(t_fdf *fdf)
 	fdf->row = 0;
 	while (ret)
 	{
-		fdf->line = get_next_line(fdf->fd);
-		if (fdf->line == NULL)
+		parser->line = get_next_line(parser->fd);
+		if (parser->line == NULL)
 			ret = 0;
 		else
 		{
 			if (fdf->column == -1)
-				fdf->column = ft_count_column(fdf->line, ' ');
+				fdf->column = ft_count_column(parser->line, ' ');
 			else
 			{
-				if (ft_count_column(fdf->line, ' ') != fdf->column)
-					ft_error_map(fdf, 'm');
+				if (ft_count_column(parser->line, ' ') != fdf->column)
+					ft_error_map(parser, 'm');
 			}
 			(fdf->row)++;
 		}
-		free(fdf->line);
+		free(parser->line);
 	}
-	close(fdf->fd);
+	close(parser->fd);
 }
 
 static int	ft_allocate_mem(int ***arr, int row, int column)
@@ -90,43 +85,51 @@ static int	ft_allocate_mem(int ***arr, int row, int column)
 	return (0);
 }
 
-static void	ft_fill_color_map(t_fdf *fdf)
+static void	ft_fill_color_map(t_fdf *fdf, t_pars *parser)
 {
 	int		ret;
 	int		nb_line;
 
+	fdf->max_alt = INT_MIN;
+	fdf->min_alt = INT_MAX;
 	ret = 1;
 	nb_line = 0;
 	while (ret)
 	{
-		fdf->line = get_next_line(fdf->fd);
-		if (fdf->line == NULL)
+		parser->line = get_next_line(parser->fd);
+		if (parser->line == NULL)
 			ret = 0;
 		else
-			ft_define_map_value(fdf, nb_line);
+			ft_define_map_value(fdf, parser, nb_line);
 		nb_line++;
-		free(fdf->line);
+		free(parser->line);
 	}
-	close(fdf->fd);
+	close(parser->fd);
 }
 
 void	ft_read_map(t_fdf *fdf, int argc, char **argv)
 {
-	fdf->fd = ft_open_map(argc, argv, 'f');
-	ft_define_column_row(fdf);
+	t_pars	parser;
+
+	parser.fd = ft_open_map(argc, argv, 'f');
+	if (parser.fd == -1)
+		ft_exit_fdf('p');
+	ft_define_column_row(fdf, &parser);
 	if (fdf->row == 0)
-		ft_error_map(fdf, 'm');
+		ft_error_map_close(&parser, 'm');
 	if (ft_allocate_mem(&(fdf->map), fdf->row, fdf->column) == -1)
-	{
-		perror("Error");
-		exit (1);
-	}
+		ft_exit_fdf('p');
 	if (ft_allocate_mem(&(fdf->color), fdf->row, fdf->column) == -1)
 	{
 		ft_free_int_array(fdf->map, fdf->row);
-		perror("Error");
-		exit (1);
+		ft_exit_fdf('p');
 	}
-	fdf->fd = ft_open_map(argc, argv, 's');
-	ft_fill_color_map(fdf);
+	parser.fd = ft_open_map(argc, argv, 's');
+	if (parser.fd == -1)
+	{
+		ft_free_int_array(fdf->map, fdf->row);
+		ft_free_int_array(fdf->color, fdf->row);
+		ft_exit_fdf('p');
+	}	
+	ft_fill_color_map(fdf, &parser);
 }
