@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 20:04:51 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/29 19:58:00 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/01 19:01:21 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	ft_atoi_base_16(t_fdf *fdf, t_pars *parser, char *str)
 	nb = 0;
 	if (!str)
 		return (0);
-	while (!(ft_isprint(str[i])))
-		i++;
+	if (str[0] == '\n')
+		return (0);
 	if (str[i++] != '0')
 		ft_error_allocate_cell(fdf, parser, 'm');
 	if (str[i++] != 'x')

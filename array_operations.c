@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 19:52:53 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/23 20:50:05 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/01 18:26:47 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	ft_free_int_array(int **arr, int row)
 	free(arr);
 }
 
-void	ft_free_char_array(char **arr, int row)
+void	ft_free_char_array(char **arr)
 {
 	int	i;
 
 	i = 0;
-	while (i < row)
+	while (arr[i])
 		free(arr[i++]);
 	free(arr);
 }

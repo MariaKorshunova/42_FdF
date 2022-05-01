@@ -6,7 +6,7 @@
 #    By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 19:11:05 by jmabel            #+#    #+#              #
-#    Updated: 2022/04/29 20:03:25 by jmabel           ###   ########.fr        #
+#    Updated: 2022/05/01 19:24:56 by jmabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ RM			=	rm -rf
 SRCS		=	fdf.c	map_read.c	map_error.c	map_define_value.c\
 				array_operations.c	ft_atoi_base10.c	ft_atoi_base16.c\
 				colors.c\
-				./get_next_line/get_next_line.c\
-				put_image.c
+				put_image.c	line.c\
+				./get_next_line/get_next_line.c
 
 LIBFT		=	./libft/libft.a
 LMLX		=	/usr/local/lib/ -lmlx -framework OpenGL -framework Appkit

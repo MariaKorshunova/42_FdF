@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 19:54:44 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/29 21:24:46 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/01 17:46:27 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	ft_define_color(int *color, t_rgb *low_c, t_rgb *high_c, float coef)
 	color_rgb.r = (int)(round(low_c->r + coef * (high_c->r - low_c->r)));
 	color_rgb.g = (int)(round(low_c->g + coef * (high_c->g - low_c->g)));
 	color_rgb.b = (int)(round(low_c->b + coef * (high_c->b - low_c->b)));
+	*color = color_rgb.r << 16 | color_rgb.g << 8 | color_rgb.b;
 }
 
 void	ft_set_colors(t_fdf *fdf)
@@ -63,6 +64,5 @@ void	ft_set_colors(t_fdf *fdf)
 			j++;
 		}
 		i++;
-		// printf("\n");
 	}
 }

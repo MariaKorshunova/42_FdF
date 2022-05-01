@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:00:51 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/29 18:40:21 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/01 18:54:17 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,7 @@ void	ft_error_allocate_arr(t_fdf *fdf, t_pars *parser, char error)
 
 void	ft_error_allocate_cell(t_fdf *fdf, t_pars *parser, char error)
 {
-	int	is_color;
-
-	is_color = 0;
-	if ((parser->cell)[1] != '\0')
-		is_color = 1;
-	ft_free_char_array(parser->cell, is_color + 1);
-	ft_free_char_array(parser->map_line, fdf->column);
+	ft_free_char_array(parser->cell);
+	ft_free_char_array(parser->map_line);
 	ft_error_allocate_arr(fdf, parser, error);
 }

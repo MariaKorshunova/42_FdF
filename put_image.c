@@ -6,19 +6,11 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:00:46 by jmabel            #+#    #+#             */
-/*   Updated: 2022/03/20 16:12:06 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/01 20:49:13 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static int	ft_abs(int n)
-{
-	if (n >= 0)
-		return (n);
-	else
-		return (-n);
-}
 
 void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color)
 {
@@ -28,44 +20,26 @@ void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	ft_define_step_diff(t_coord *p0, t_coord *p1,
-		t_coord *step, t_coord *diff)
+void	ft_draw_lines(t_fdf *fdf, t_img *img)
 {
-	if (p0->x <= p1->x)
-		step->x = 1;
-	else
-		step->x = -1;
-	if (p0->y <= p1->y)
-		step->y = 1;
-	else
-		step->y = -1;
-	diff->x = ft_abs(p1->x - p0->x);
-	diff->y = -ft_abs(p1->y - p0->y);
-}
+	int		i;
+	int		j;
+	t_coord	p0;
+	t_coord	p1;
 
-void	ft_line(t_img *img, t_coord p0, t_coord p1, int color)
-{
-	int		error;
-	int		d_error;
-	t_coord	step;
-	t_coord	diff;
-
-	ft_define_step_diff(&p0, &p1, &step, &diff);
-	error = diff.x + diff.y;
-	while ((p0.x != p1.x) || (p0.y != p1.y))
+	i = 0;
+	while (i < fdf->row)
 	{
-		ft_mlx_pixel_put_img(img, p0.x, p0.y, color);
-		d_error = 2 * error;
-		if (d_error >= diff.y && p0.x != p1.x)
+		j = 0;
+		while (j < fdf->column - 1)
 		{
-			error += diff.y;
-			p0.x += step.x;
+			p0.x = j * fdf->zoom;
+			p0.y = i * fdf->zoom;
+			p1.x = (j + 1) * fdf->zoom;
+			p1.y = i * fdf->zoom;
+			ft_line(img, p0, p1, fdf->color[i][j]);
+			j++;
 		}
-		if (d_error <= diff.x && p0.y != p1.y)
-		{
-			error += diff.x;
-			p0.y += step.y;
-		}
+		i++;
 	}
-	ft_mlx_pixel_put_img(img, p1.x, p1.y, color);
 }

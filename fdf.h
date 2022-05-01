@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/29 20:38:25 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/01 20:02:05 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_fdf
 	int		row;
 	int		max_alt;
 	int		min_alt;
+	int		zoom;
 }	t_fdf;
 
 typedef struct s_pars
@@ -82,13 +83,9 @@ void	ft_error_map(t_pars *parser, char error);
 void	ft_error_allocate_arr(t_fdf *fdf, t_pars *parser, char error);
 void	ft_error_allocate_cell(t_fdf *fdf, t_pars *parser, char error);
 
-/* put_image.c */
-void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
-void	ft_line(t_img *img, t_coord p1, t_coord p2, int color);
-
 /* array_operations.c */
 void	ft_free_int_array(int **arr, int len);
-void	ft_free_char_array(char **arr, int row);
+void	ft_free_char_array(char **arr);
 int		ft_count_column(char const *s, char c);
 
 /*  ft_atoi_base10.c  */
@@ -99,5 +96,12 @@ int		ft_atoi_base_16(t_fdf *fdf, t_pars *parser, char *str);
 
 /* colors.c */
 void	ft_set_colors(t_fdf *fdf);
+
+/* put_image.c */
+void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
+void	ft_draw_lines(t_fdf *fdf, t_img *img);
+
+/* line.c */
+void	ft_line(t_img *img, t_coord p1, t_coord p2, int color);
 
 #endif

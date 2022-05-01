@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:02:06 by jmabel            #+#    #+#             */
-/*   Updated: 2022/04/29 20:01:57 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/01 19:02:23 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,13 @@ static void	ft_fill_value(t_fdf *fdf, t_pars *parser, int line)
 		parser->cell = ft_split((parser->map_line)[i], ',');
 		if (!(parser->cell))
 		{
-			ft_free_char_array(parser->map_line, fdf->column);
+			ft_free_char_array(parser->map_line);
 			ft_error_allocate_arr(fdf, parser, 'p');
 		}
 		fdf->map[line][i] = ft_atoi_base_10(fdf, parser, (parser->cell)[0]);
 		ft_define_maxmin_altitude(fdf, line, i);
 		fdf->color[line][i] = ft_atoi_base_16(fdf, parser, (parser->cell)[1]);
-		if ((parser->cell)[1] != '\0')
-			is_color = 1;
-		ft_free_char_array(parser->cell, is_color + 1);
+		ft_free_char_array(parser->cell);
 		i++;
 	}
 }
@@ -51,5 +49,5 @@ void	ft_define_map_value(t_fdf *fdf, t_pars *parser, int nb_line)
 	if (!(parser->map_line))
 		ft_error_allocate_arr(fdf, parser, 'p');
 	ft_fill_value(fdf, parser, nb_line);
-	ft_free_char_array(parser->map_line, fdf->column);
+	ft_free_char_array(parser->map_line);
 }
