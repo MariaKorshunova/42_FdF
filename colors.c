@@ -6,13 +6,13 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 19:54:44 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/01 17:46:27 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/03 20:04:57 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	ft_hex_to_rgb(int color, t_rgb *rgb)
+void	ft_hex_to_rgb(int color, t_rgb *rgb)
 {
 	rgb->r = ((color >> 16) & 0xFF);
 	rgb->g = ((color >> 8) & 0xFF);

@@ -66,9 +66,15 @@ You can check yourself at the end of this step with the **function whis prints t
 
 - [X] Define max and min altitude value
 - [X] Define value of [R, G, B] in RGB: r =  LOW_R + coeff_minimax_normalization_altitude * (HIGH_R - LOW_R)
-- [ ] Define value in color use BitShifting
+- [X] Define value in color use BitShifting
 
 ## Step 3. Include MinilibX
+
+- [X] Connection login to the graphical server
+- [X] Create a pointer to the window 
+- [X] Initialize the image
+- [X] Calculate the memory offset using the line length set by mlx_get_data_addr
+- [X] Put image to window
 
 Useful source: https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 
@@ -103,27 +109,10 @@ A simple example use Minilibx:
 		mlx_loop(mlx_ptr);
 	}
 
-* 
+## Step 4. Draw a line
 
-## Step 3. Draw map in 2d-representation
-
-
-## Parsing maps
-
-## Colors
-
-TRGB: 0xTTRRGGBB
-* T - transparency
-* R - red component
-* G - green component
-* B - blue component
-
-RGB:
-* Red - 0x00FF0000
-* Green - 0x0000FF00
-* Blue - 0x000000FF
-
-## Draw a line
+- [X] Draw a line of a define colore
+- [ ] Draw a line with a gradient of colors
 
 * Bresenham's line algorithm - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 * Xiaolin Wu's line algorithm - https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
@@ -149,9 +138,23 @@ Checking draw line function with ft_asterisk:
 		}
 	}
 
+## Step 5. Draw map in 2d-representation
 
+- [ ] Connect map points (x, y) with lines (with certain zoom)
 
-## Isometric projection
+The loop algorithm for connectiom points:
+
+0 -> 0 -> 0 -> 0 -> 0
+|    |    |    |    |
+0 -> 0 -> 0 -> 0 -> 0
+|    |    |    |    |
+0 -> 0 -> 0 -> 0 -> 0
+|    |    |    |    |
+0 -> 0 -> 0 -> 0 -> 0
+|    |    |    |    |
+0 -> 0 -> 0 -> 0 -> 0
+
+## Step 6. Isometric projection
 	
 	x = (x - y) * cos(a)
 

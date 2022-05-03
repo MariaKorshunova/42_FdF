@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/01 20:02:05 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/03 20:13:56 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_coord
 {
 	int	x;
 	int	y;
+	int	color;
 }	t_coord;
 
 typedef struct s_rgb
@@ -96,6 +97,7 @@ int		ft_atoi_base_16(t_fdf *fdf, t_pars *parser, char *str);
 
 /* colors.c */
 void	ft_set_colors(t_fdf *fdf);
+void	ft_hex_to_rgb(int color, t_rgb *rgb);
 
 /* put_image.c */
 void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
@@ -103,5 +105,6 @@ void	ft_draw_lines(t_fdf *fdf, t_img *img);
 
 /* line.c */
 void	ft_line(t_img *img, t_coord p1, t_coord p2, int color);
+void	ft_example(t_fdf *fdf, t_img *img); //temp function for training
 
 #endif

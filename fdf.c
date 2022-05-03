@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:25:58 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/01 20:48:22 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/03 19:03:47 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int argc, char **argv)
 	img.img = mlx_new_image(fdf.mlx_ptr, 1000, 1000);
 	img.addr = mlx_get_data_addr(img.img,
 			&img.bpp, &img.line_length, &img.endian);
-	ft_draw_lines(&fdf, &img);
+	// ft_draw_lines(&fdf, &img);
+	ft_example(&fdf, &img);
 	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, img.img, 0, 0);
 	mlx_loop(fdf.mlx_ptr);
 	ft_free_int_array(fdf.map, fdf.row);

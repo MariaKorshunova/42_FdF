@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 19:23:31 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/01 19:23:52 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/03 20:08:02 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,40 @@ void	ft_line(t_img *img, t_coord p0, t_coord p1, int color)
 		}
 	}
 	ft_mlx_pixel_put_img(img, p1.x, p1.y, color);
+}
+
+void	ft_example(t_fdf *fdf, t_img *img)
+{
+	t_coord	p0;
+	t_coord	p1;
+	t_rgb	color;
+	t_rgb	low_color;
+	t_rgb	high_color;
+	int		n;
+	int		i;
+	float	alpha;
+
+	(void)fdf;
+	ft_hex_to_rgb(LOW_COLOR, &low_color);
+	ft_hex_to_rgb(HIGH_COLOR, &high_color);
+	p0.x = 0;
+	p0.y = 500;
+	n = 1000;
+	i = 0;
+	while (i < n)
+	{
+		alpha = i / (float)(n - 1);
+		color.r = (int)(low_color.r * (1 - alpha) + high_color.r * alpha);
+		color.g = (int)(low_color.g * (1 - alpha) + high_color.g * alpha);
+		color.b = (int)(low_color.b * (1 - alpha) + high_color.b * alpha);
+		p1.x = p0.x;
+		p1.y = p0.y;
+		while (p1.y < 800)
+		{
+			ft_mlx_pixel_put_img(img, p1.x, p1.y, color.r << 16 | color.g << 8 | color.b);
+			p1.y++;
+		}
+		p0.x++;
+		i++;
+	}
 }
