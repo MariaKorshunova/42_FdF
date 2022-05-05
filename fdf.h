@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/03 20:13:56 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/05 20:11:52 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,11 @@ void	ft_hex_to_rgb(int color, t_rgb *rgb);
 
 /* put_image.c */
 void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
-void	ft_draw_lines(t_fdf *fdf, t_img *img);
 
 /* line.c */
-void	ft_line(t_img *img, t_coord p1, t_coord p2, int color);
-void	ft_example(t_fdf *fdf, t_img *img); //temp function for training
+void	ft_line_gradient_color(t_img *img, t_coord p0, t_coord p1);
+
+/* draw_shape.c */
+void	ft_draw_lines(t_fdf *fdf, t_img *img);
 
 #endif

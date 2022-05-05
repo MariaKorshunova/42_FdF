@@ -6,19 +6,11 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 19:23:31 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/03 20:08:02 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/05 18:45:30 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static int	ft_abs(int n)
-{
-	if (n >= 0)
-		return (n);
-	else
-		return (-n);
-}
 
 static void	ft_define_step_diff(t_coord *p0, t_coord *p1,
 		t_coord *step, t_coord *diff)
@@ -31,22 +23,21 @@ static void	ft_define_step_diff(t_coord *p0, t_coord *p1,
 		step->y = 1;
 	else
 		step->y = -1;
-	diff->x = ft_abs(p1->x - p0->x);
-	diff->y = -ft_abs(p1->y - p0->y);
+	diff->x = (int)(abs(p1->x - p0->x));
+	diff->y = -(int)(abs(p1->y - p0->y));
 }
 
-void	ft_line(t_img *img, t_coord p0, t_coord p1, int color)
+static int	ft_define_pixel_line(t_coord p0, t_coord p1,
+		t_coord step, t_coord diff)
 {
+	int		n;
 	int		error;
 	int		d_error;
-	t_coord	step;
-	t_coord	diff;
 
-	ft_define_step_diff(&p0, &p1, &step, &diff);
+	n = 0;
 	error = diff.x + diff.y;
 	while ((p0.x != p1.x) || (p0.y != p1.y))
 	{
-		ft_mlx_pixel_put_img(img, p0.x, p0.y, color);
 		d_error = 2 * error;
 		if (d_error >= diff.y && p0.x != p1.x)
 		{
@@ -58,42 +49,59 @@ void	ft_line(t_img *img, t_coord p0, t_coord p1, int color)
 			error += diff.x;
 			p0.y += step.y;
 		}
+		n++;
 	}
-	ft_mlx_pixel_put_img(img, p1.x, p1.y, color);
+	return (n + 1);
 }
 
-void	ft_example(t_fdf *fdf, t_img *img)
+/*
+	pixel - pixels in line
+	pixel.x - amount of pixels 
+	pixel.y - current position
+*/
+
+static int	ft_color_pixel(t_coord *p0, t_coord *p1, t_coord *pixel)
 {
-	t_coord	p0;
-	t_coord	p1;
+	t_rgb	p0_color;
+	t_rgb	p1_color;
 	t_rgb	color;
-	t_rgb	low_color;
-	t_rgb	high_color;
-	int		n;
-	int		i;
 	float	alpha;
 
-	(void)fdf;
-	ft_hex_to_rgb(LOW_COLOR, &low_color);
-	ft_hex_to_rgb(HIGH_COLOR, &high_color);
-	p0.x = 0;
-	p0.y = 500;
-	n = 1000;
-	i = 0;
-	while (i < n)
+	ft_hex_to_rgb(p0->color, &p0_color);
+	ft_hex_to_rgb(p1->color, &p1_color);
+	alpha = pixel->y / (float)(pixel->x - 1);
+	color.r = (int)(p0_color.r * (1 - alpha) + p1_color.r * alpha);
+	color.g = (int)(p0_color.g * (1 - alpha) + p1_color.g * alpha);
+	color.b = (int)(p0_color.b * (1 - alpha) + p1_color.b * alpha);
+	(pixel->y)++;
+	return (color.r << 16 | color.g << 8 | color.b);
+}
+
+void	ft_line_gradient_color(t_img *img, t_coord p0, t_coord p1)
+{
+	t_coord	step;
+	t_coord	diff;
+	t_coord	error;
+	t_coord	pixel;
+
+	ft_define_step_diff(&p0, &p1, &step, &diff);
+	pixel.x = ft_define_pixel_line(p0, p1, step, diff);
+	pixel.y = 0;
+	error.x = diff.x + diff.y;
+	while ((p0.x != p1.x) || (p0.y != p1.y))
 	{
-		alpha = i / (float)(n - 1);
-		color.r = (int)(low_color.r * (1 - alpha) + high_color.r * alpha);
-		color.g = (int)(low_color.g * (1 - alpha) + high_color.g * alpha);
-		color.b = (int)(low_color.b * (1 - alpha) + high_color.b * alpha);
-		p1.x = p0.x;
-		p1.y = p0.y;
-		while (p1.y < 800)
+		ft_mlx_pixel_put_img(img, p0.x, p0.y, ft_color_pixel(&p0, &p1, &pixel));
+		error.y = 2 * error.x;
+		if (error.y >= diff.y && p0.x != p1.x)
 		{
-			ft_mlx_pixel_put_img(img, p1.x, p1.y, color.r << 16 | color.g << 8 | color.b);
-			p1.y++;
+			error.x += diff.y;
+			p0.x += step.x;
 		}
-		p0.x++;
-		i++;
+		if (error.y <= diff.x && p0.y != p1.y)
+		{
+			error.x += diff.x;
+			p0.y += step.y;
+		}
 	}
+	ft_mlx_pixel_put_img(img, p1.x, p1.y, ft_color_pixel(&p0, &p1, &pixel));
 }

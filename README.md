@@ -117,6 +117,32 @@ A simple example use Minilibx:
 * Bresenham's line algorithm - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 * Xiaolin Wu's line algorithm - https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
 
+	void	ft_line(t_img *img, t_coord p0, t_coord p1, int color)
+	{
+		int		error;
+		int		d_error;
+		t_coord	step;
+		t_coord	diff;
+
+		ft_define_step_diff(&p0, &p1, &step, &diff);
+		error = diff.x + diff.y;
+		while ((p0.x != p1.x) || (p0.y != p1.y))
+		{
+			ft_mlx_pixel_put_img(img, p0.x, p0.y, color);
+			d_error = 2 * error;
+			if (d_error >= diff.y && p0.x != p1.x)
+			{
+				error += diff.y;
+				p0.x += step.x;
+			}
+			if (d_error <= diff.x && p0.y != p1.y)
+			{
+				error += diff.x;
+				p0.y += step.y;
+			}
+		}
+		ft_mlx_pixel_put_img(img, p1.x, p1.y, color);
+	}
 
 Checking draw line function with ft_asterisk:
 
@@ -144,18 +170,21 @@ Checking draw line function with ft_asterisk:
 
 The loop algorithm for connectiom points:
 
-0 -> 0 -> 0 -> 0 -> 0
-|    |    |    |    |
-0 -> 0 -> 0 -> 0 -> 0
-|    |    |    |    |
-0 -> 0 -> 0 -> 0 -> 0
-|    |    |    |    |
-0 -> 0 -> 0 -> 0 -> 0
-|    |    |    |    |
-0 -> 0 -> 0 -> 0 -> 0
+	0 -> 0 -> 0 -> 0 -> 0
+	|    |    |    |    |
+	0 -> 0 -> 0 -> 0 -> 0
+	|    |    |    |    |
+	0 -> 0 -> 0 -> 0 -> 0
+	|    |    |    |    |
+	0 -> 0 -> 0 -> 0 -> 0
+	|    |    |    |    |
+	0 -> 0 -> 0 -> 0 -> 0
 
 ## Step 6. Isometric projection
 	
 	x = (x - y) * cos(a)
 
 	y = (x + y) / 2 * sin(b)
+
+// закрытие по X
+mlx_hook(window, 17, 0, ...)
