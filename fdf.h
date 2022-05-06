@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/05 20:11:52 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/06 17:46:18 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@
 # define LOW_COLOR 0x9900cc
 # define HIGH_COLOR 0xffff00
 
+/*  set default window size */
+# define WIDTH 1920
+# define HEIGHT 1080
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_img;
+
 typedef struct s_fdf
 {
 	void	*mlx_ptr;
@@ -38,6 +51,7 @@ typedef struct s_fdf
 	int		max_alt;
 	int		min_alt;
 	int		zoom;
+	t_img	img;
 }	t_fdf;
 
 typedef struct s_pars
@@ -47,15 +61,6 @@ typedef struct s_pars
 	char	**cell;
 	int		fd;	
 }	t_pars;
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_img;
 
 typedef struct s_coord
 {
@@ -106,6 +111,6 @@ void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
 void	ft_line_gradient_color(t_img *img, t_coord p0, t_coord p1);
 
 /* draw_shape.c */
-void	ft_draw_lines(t_fdf *fdf, t_img *img);
+void	ft_draw_lines(t_fdf *fdf);
 
 #endif

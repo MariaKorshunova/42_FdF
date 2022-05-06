@@ -112,7 +112,7 @@ A simple example use Minilibx:
 ## Step 4. Draw a line
 
 - [X] Draw a line of a define colore
-- [ ] Draw a line with a gradient of colors
+- [X] Draw a line with a gradient of colors
 
 * Bresenham's line algorithm - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 * Xiaolin Wu's line algorithm - https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
@@ -166,7 +166,9 @@ Checking draw line function with ft_asterisk:
 
 ## Step 5. Draw map in 2d-representation
 
-- [ ] Connect map points (x, y) with lines (with certain zoom)
+- [ ] Define zoom depending on map size
+- [ ] Define center of map depend on image
+- [X] Connect map points (x, y) with lines
 
 The loop algorithm for connectiom points:
 
@@ -182,9 +184,9 @@ The loop algorithm for connectiom points:
 
 ## Step 6. Isometric projection
 	
-	x = (x - y) * cos(a)
+	x = (x - y) * cos(alpha)
 
-	y = (x + y) / 2 * sin(b)
+	y = (x + y) / 2 * sin(alpha)
 
 // закрытие по X
 mlx_hook(window, 17, 0, ...)
