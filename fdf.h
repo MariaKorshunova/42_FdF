@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/06 17:46:18 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/07 21:48:14 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define HIGH_COLOR 0xffff00
 
 /*  set default window size */
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1024
+# define HEIGHT 1024
 
 typedef struct s_img
 {
@@ -81,6 +81,7 @@ void	ft_read_map(t_fdf *fdf, int argc, char **argv);
 
 /* map_define_value.c */
 void	ft_define_map_value(t_fdf *fdf, t_pars *parser, int nb_line);
+void	ft_define_zoom(t_fdf *fdf);
 
 /* map_error.c  */
 void	ft_exit_fdf(char error);
@@ -111,6 +112,6 @@ void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
 void	ft_line_gradient_color(t_img *img, t_coord p0, t_coord p1);
 
 /* draw_shape.c */
-void	ft_draw_lines(t_fdf *fdf);
+void	ft_draw_map(t_fdf *fdf);
 
 #endif

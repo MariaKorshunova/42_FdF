@@ -166,8 +166,9 @@ Checking draw line function with ft_asterisk:
 
 ## Step 5. Draw map in 2d-representation
 
-- [ ] Define zoom depending on map size
-- [ ] Define center of map depend on image
+- [X] Define zoom depending on map size
+- [X] Fixed segmentation fault in case out-of-bounds image
+- [X] Align map to the center of image
 - [X] Connect map points (x, y) with lines
 
 The loop algorithm for connectiom points:
@@ -184,9 +185,21 @@ The loop algorithm for connectiom points:
 
 ## Step 6. Isometric projection
 	
-	x = (x - y) * cos(alpha)
+- [ ] Redefine coordinates in isometric projection
 
-	y = (x + y) / 2 * sin(alpha)
+Useful source:
+* https://habr.com/ru/post/497808/
+* https://ru.wikipedia.org/wiki/Матрица_перехода
+; https://ru.wikipedia.org/wiki/Матрица_поворота
+
+
+## Step 7. Graphic management
+
+- [X] Your program has to display the image in a window.
+- [ ] The management of your window must remain smooth (changing to another window, minimizing, and so forth).
+- [ ] Pressing ESC must close the window and quit the program in a clean way.
+- [ ] Clicking on the cross on the window’s frame must close the window and quit the
+program in a clean way.
 
 // закрытие по X
 mlx_hook(window, 17, 0, ...)
