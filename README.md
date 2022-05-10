@@ -117,32 +117,34 @@ A simple example use Minilibx:
 * Bresenham's line algorithm - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 * Xiaolin Wu's line algorithm - https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
 
-	void	ft_line(t_img *img, t_coord p0, t_coord p1, int color)
-	{
-		int		error;
-		int		d_error;
-		t_coord	step;
-		t_coord	diff;
 
-		ft_define_step_diff(&p0, &p1, &step, &diff);
-		error = diff.x + diff.y;
-		while ((p0.x != p1.x) || (p0.y != p1.y))
+		void	ft_line(t_img *img, t_coord p0, t_coord p1, int color)
 		{
-			ft_mlx_pixel_put_img(img, p0.x, p0.y, color);
-			d_error = 2 * error;
-			if (d_error >= diff.y && p0.x != p1.x)
+			int		error;
+			int		d_error;
+			t_coord	step;
+			t_coord	diff;
+
+			ft_define_step_diff(&p0, &p1, &step, &diff);
+			error = diff.x + diff.y;
+			while ((p0.x != p1.x) || (p0.y != p1.y))
 			{
-				error += diff.y;
-				p0.x += step.x;
+				ft_mlx_pixel_put_img(img, p0.x, p0.y, color);
+				d_error = 2 * error;
+				if (d_error >= diff.y && p0.x != p1.x)
+				{
+					error += diff.y;
+					p0.x += step.x;
+				}
+				if (d_error <= diff.x && p0.y != p1.y)
+				{
+					error += diff.x;
+					p0.y += step.y;
+				}
 			}
-			if (d_error <= diff.x && p0.y != p1.y)
-			{
-				error += diff.x;
-				p0.y += step.y;
-			}
+			ft_mlx_pixel_put_img(img, p1.x, p1.y, color);
 		}
-		ft_mlx_pixel_put_img(img, p1.x, p1.y, color);
-	}
+
 
 Checking draw line function with ft_asterisk:
 
@@ -183,14 +185,18 @@ The loop algorithm for connectiom points:
 	|    |    |    |    |
 	0 -> 0 -> 0 -> 0 -> 0
 
-## Step 6. Isometric projection
+## Step 6. Isometric transformatiom
 	
-- [ ] Redefine coordinates in isometric projection
+- [ ] Function multiply 2 matriсes 3 * 3
+- [ ] Define matrix rotate x
+- [ ] Define matrix rotate y
+- [ ] Define matrix rotate z
+- [ ] Rotate map in isometric proection
 
 Useful source:
 * https://habr.com/ru/post/497808/
 * https://ru.wikipedia.org/wiki/Матрица_перехода
-; https://ru.wikipedia.org/wiki/Матрица_поворота
+* https://ru.wikipedia.org/wiki/Матрица_поворота
 
 
 ## Step 7. Graphic management
@@ -203,3 +209,6 @@ program in a clean way.
 
 // закрытие по X
 mlx_hook(window, 17, 0, ...)
+
+
+

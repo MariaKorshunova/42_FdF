@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:25:58 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/07 21:50:21 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/10 21:07:57 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	ft_read_map(&fdf, argc, argv);
 	ft_set_colors(&fdf);
 	ft_define_zoom(&fdf);
+	ft_define_rotate_angle(&fdf);
 	fdf.mlx_ptr = mlx_init();
 	fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, WIDTH, HEIGHT, "mlx_fdf");
 	fdf.img.img = mlx_new_image(fdf.mlx_ptr, WIDTH, HEIGHT);

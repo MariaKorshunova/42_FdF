@@ -6,7 +6,7 @@
 #    By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 19:11:05 by jmabel            #+#    #+#              #
-#    Updated: 2022/05/07 22:15:10 by jmabel           ###   ########.fr        #
+#    Updated: 2022/05/10 15:33:52 by jmabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 
-SRCS		=	main.c
+SRCS		=	main.c	transform.c 	draw.c\
+				matrix_operations.c
 
 LIBFT		=	../libft/libft.a
 LMLX		=	/usr/local/lib/ -lmlx -framework OpenGL -framework Appkit
