@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/10 21:19:21 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/12 21:15:13 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,12 @@ typedef struct s_matrix
 	float	a11;
 	float	a12;
 	float	a13;
-	float	a14;
 	float	a21;
 	float	a22;
 	float	a23;
-	float	a24;
 	float	a31;
 	float	a32;
 	float	a33;
-	float	a34;
-	float	a41;
-	float	a42;
-	float	a43;
-	float	a44;
 }	t_matrix;
 
 typedef struct s_coord
@@ -136,10 +129,9 @@ void		ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
 void		ft_line_gradient_color(t_img *img, t_coord p0, t_coord p1);
 
 /* matrix_operations.c */
-t_matrix	ft_translation_matrix(int dx, int dy);
 t_matrix	ft_scale_matrix(int zoom);
 t_matrix	ft_identity_matrix(void);
-t_matrix	ft_matrix_multiply_4_4(t_matrix X, t_matrix Y);
+t_matrix	ft_matrix_multiply(t_matrix X, t_matrix Y);
 
 /* matrix_rotate.c */
 t_matrix	ft_rotate(t_coord	angle);

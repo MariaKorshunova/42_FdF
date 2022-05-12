@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 17:04:20 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/10 21:58:08 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/12 22:24:48 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 static void	ft_transform_matrix(t_fdf *fdf)
 {
 	fdf->m = ft_rotate(fdf->angle);
-	fdf->m = ft_matrix_multiply_4_4(ft_scale_matrix(fdf->zoom), fdf->m);
-	// fdf->m = ft_matrix_multiply_4_4
-	// 	(ft_translation_matrix(WIDTH / 2, HEIGHT / 2), fdf->m);
+	fdf->m = ft_matrix_multiply(ft_scale_matrix(fdf->zoom), fdf->m);
 }
 
 static int	ft_define_point_coord(t_fdf *fdf, t_coord *p, int x, int y)
 {
+	int	temp_x;
+
 	(*p).x = x - (fdf->column / 2);
 	(*p).y = y - (fdf->row / 2);
+	temp_x = (*p).x;
 	(*p).x = fdf->m.a11 * (*p).x + fdf->m.a12 * (*p).y
-		+ fdf->m.a13 * fdf->map[y][x] + fdf->m.a14;
-	(*p).y = fdf->m.a21 * (*p).x + fdf->m.a22 * (*p).y
-		+ fdf->m.a23 * fdf->map[y][x] + fdf->m.a24;
+		+ fdf->m.a13 * fdf->map[y][x];
+	(*p).y = fdf->m.a21 * temp_x + fdf->m.a22 * (*p).y
+		+ fdf->m.a23 * fdf->map[y][x];
+	(*p).x = (*p).x + WIDTH / 2;
+	(*p).y = (*p).y + HEIGHT / 2;
 	(*p).color = fdf->color[y][x];
 	if ((*p).x < 0 || (*p).x > WIDTH || (*p).y < 0 || (*p).y > HEIGHT)
 		return (-1);

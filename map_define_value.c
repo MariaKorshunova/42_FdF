@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:02:06 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/10 21:58:55 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/12 22:32:50 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_define_zoom(t_fdf *fdf)
 
 void	ft_define_rotate_angle(t_fdf *fdf)
 {
-	fdf->angle.x = 20;
-	fdf->angle.y = 20;
-	fdf->angle.z = 2;
+	fdf->angle.x = 30;
+	fdf->angle.y = 0;
+	fdf->angle.z = -30;
 }
