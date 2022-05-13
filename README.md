@@ -18,7 +18,7 @@ Wireframe model. This project is about representing a landscape as a 3D object i
 
 ## Project execution steps
 
-### Step 1. Parsing maps and error management
+## Step 1. Parsing maps and error management
 
 - [X] Invalid number of arguments: only one argument with the name of file with map.
 - [X] Invalid file extension: extension of file has to ne .fdf .
@@ -187,11 +187,11 @@ The loop algorithm for connectiom points:
 
 ## Step 6. Isometric transformatiom
 	
-- [ ] Function multiply 2 matriсes 3 * 3
-- [ ] Define matrix rotate x
-- [ ] Define matrix rotate y
-- [ ] Define matrix rotate z
-- [ ] Rotate map in isometric proection
+- [X] Function multiply 2 matriсes 3 * 3
+- [X] Define matrix rotate x
+- [X] Define matrix rotate y
+- [X] Define matrix rotate z
+- [X] Rotate map in isometric proection: 1) rotate; 2) scale; 3) translation.
 
 Useful source:
 * https://habr.com/ru/post/497808/
@@ -203,12 +203,14 @@ Useful source:
 
 - [X] Your program has to display the image in a window.
 - [ ] The management of your window must remain smooth (changing to another window, minimizing, and so forth).
-- [ ] Pressing ESC must close the window and quit the program in a clean way.
-- [ ] Clicking on the cross on the window’s frame must close the window and quit the
+- [X] Pressing ESC must close the window and quit the program in a clean way.
+- [X] Clicking on the cross on the window’s frame must close the window and quit the
 program in a clean way.
 
-// закрытие по X
-mlx_hook(window, 17, 0, ...)
+	void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*f)(), void *param)
 
+## Current problems
+- [ ] Check maps colors in case where one value altitude for all maps points.
+- [ ] Memory leak protection for minilibx fubctions
 
 

@@ -6,7 +6,7 @@
 #    By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 19:11:05 by jmabel            #+#    #+#              #
-#    Updated: 2022/05/10 21:05:33 by jmabel           ###   ########.fr        #
+#    Updated: 2022/05/13 21:32:15 by jmabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS		=	fdf.c				map_read.c	map_error.c\
 				array_operations.c	ft_atoi_base10.c	ft_atoi_base16.c\
 				matrix_operations.c	matrix_rotate.c \
 				put_image.c	line.c	draw.c\
+				hook.c\
 				./get_next_line/get_next_line.c
 
 LIBFT		=	./libft/libft.a

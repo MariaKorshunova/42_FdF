@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/12 21:15:13 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/13 21:32:11 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 /*  set default window size */
 # define WIDTH 1024
 # define HEIGHT 1024
+
+/* set mlx events */
+# define ON_KEYDOWN 2
+# define ON_DESTROY 17
 
 typedef struct s_img
 {
@@ -138,5 +142,9 @@ t_matrix	ft_rotate(t_coord	angle);
 
 /* draw.c */
 void		ft_draw_map(t_fdf *fdf);
+
+/* hook.c */
+void		ft_hook_close(t_fdf *fdf);
+int			ft_fdf_close(t_fdf *fdf);
 
 #endif
