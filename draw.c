@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 17:04:20 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/12 22:24:48 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/17 21:30:49 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_define_point_coord(t_fdf *fdf, t_coord *p, int x, int y)
 		+ fdf->m.a23 * fdf->map[y][x];
 	(*p).x = (*p).x + WIDTH / 2;
 	(*p).y = (*p).y + HEIGHT / 2;
-	(*p).color = fdf->color[y][x];
+	(*p).c = fdf->color[y][x];
 	if ((*p).x < 0 || (*p).x > WIDTH || (*p).y < 0 || (*p).y > HEIGHT)
 		return (-1);
 	return (0);

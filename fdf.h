@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/13 21:32:11 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/17 21:35:01 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
 
+/* set keycode */
+# define ESC 53
+
 typedef struct s_img
 {
 	void	*img;
@@ -62,7 +65,7 @@ typedef struct s_coord
 	int	x;
 	int	y;
 	int	z;
-	int	color;
+	int	c;
 }	t_coord;
 
 typedef struct s_fdf
@@ -75,10 +78,10 @@ typedef struct s_fdf
 	int			row;
 	int			max_alt;
 	int			min_alt;
-	int			zoom;
 	t_img		img;
 	t_matrix	m;
 	t_coord		angle;
+	t_coord		zoom;
 }	t_fdf;
 
 typedef struct s_pars
@@ -95,6 +98,9 @@ typedef struct s_rgb
 	int	g;
 	int	b;
 }	t_rgb;
+
+/* fdf.c */
+int			ft_fdf_close(t_fdf *fdf);
 
 /* map_read.c */
 void		ft_read_map(t_fdf *fdf, int argc, char **argv);
@@ -133,7 +139,7 @@ void		ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
 void		ft_line_gradient_color(t_img *img, t_coord p0, t_coord p1);
 
 /* matrix_operations.c */
-t_matrix	ft_scale_matrix(int zoom);
+t_matrix	ft_scale_matrix(t_coord zoom);
 t_matrix	ft_identity_matrix(void);
 t_matrix	ft_matrix_multiply(t_matrix X, t_matrix Y);
 
@@ -144,7 +150,6 @@ t_matrix	ft_rotate(t_coord	angle);
 void		ft_draw_map(t_fdf *fdf);
 
 /* hook.c */
-void		ft_hook_close(t_fdf *fdf);
-int			ft_fdf_close(t_fdf *fdf);
+void		ft_hook(t_fdf *fdf);
 
 #endif

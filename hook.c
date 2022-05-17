@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:32:02 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/13 21:33:23 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/13 21:39:16 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_key_hook(int keycode, t_fdf *fdf)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
 		ft_fdf_close(fdf);
 	return (0);
 }

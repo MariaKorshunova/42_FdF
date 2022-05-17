@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:02:06 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/12 22:39:36 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/17 21:51:13 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,18 @@ void	ft_define_map_value(t_fdf *fdf, t_pars *parser, int nb_line)
 
 void	ft_define_zoom(t_fdf *fdf)
 {
-	int	zoom_x;
-	int	zoom_y;
-
-	zoom_x = ceil(0.8 * WIDTH / fdf->column);
-	zoom_y = ceil(0.8 * HEIGHT / fdf->row);
-	if (zoom_x <= zoom_y)
-		fdf->zoom = zoom_x;
+	fdf->zoom.x = ceil(0.7 * WIDTH / fdf->column);
+	fdf->zoom.y = ceil(0.7 * HEIGHT / fdf->row);
+	if (fdf->zoom.x <= fdf->zoom.y)
+		fdf->zoom.y = fdf->zoom.x;
 	else
-		fdf->zoom = zoom_y;
+		fdf->zoom.x = fdf->zoom.y;
+	fdf->zoom.z = 1;
 }
 
 void	ft_define_rotate_angle(t_fdf *fdf)
 {
-	fdf->angle.x = 30;
+	fdf->angle.x = 20;
 	fdf->angle.y = 0;
-	fdf->angle.z = -30;
+	fdf->angle.z = -20;
 }

@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 19:23:31 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/05 18:45:30 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/17 21:30:28 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static int	ft_color_pixel(t_coord *p0, t_coord *p1, t_coord *pixel)
 	t_rgb	color;
 	float	alpha;
 
-	ft_hex_to_rgb(p0->color, &p0_color);
-	ft_hex_to_rgb(p1->color, &p1_color);
+	ft_hex_to_rgb(p0->c, &p0_color);
+	ft_hex_to_rgb(p1->c, &p1_color);
 	alpha = pixel->y / (float)(pixel->x - 1);
 	color.r = (int)(p0_color.r * (1 - alpha) + p1_color.r * alpha);
 	color.g = (int)(p0_color.g * (1 - alpha) + p1_color.g * alpha);

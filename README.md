@@ -67,6 +67,7 @@ You can check yourself at the end of this step with the **function whis prints t
 - [X] Define max and min altitude value
 - [X] Define value of [R, G, B] in RGB: r =  LOW_R + coeff_minimax_normalization_altitude * (HIGH_R - LOW_R)
 - [X] Define value in color use BitShifting
+- [X] Check maps colors in case where one value altitude for all maps points
 
 ## Step 3. Include MinilibX
 
@@ -201,16 +202,15 @@ Useful source:
 
 ## Step 7. Graphic management
 
-- [X] Your program has to display the image in a window.
-- [ ] The management of your window must remain smooth (changing to another window, minimizing, and so forth).
-- [X] Pressing ESC must close the window and quit the program in a clean way.
+- [X] Your program has to display the image in a window
+- [X] Pressing ESC must close the window and quit the program in a clean way
 - [X] Clicking on the cross on the window’s frame must close the window and quit the
-program in a clean way.
+program in a clean way
 
 	void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*f)(), void *param)
 
 ## Current problems
-- [ ] Check maps colors in case where one value altitude for all maps points.
+- [ ] Zoom in case large altitude changes
 - [ ] Memory leak protection for minilibx fubctions
-
-
+- [ ] Destroy image for protect memory leaks
+- [ ] The management of your window must remain smooth (changing to another window, minimizing, and so forth).

@@ -6,25 +6,25 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:57:09 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/12 21:15:02 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/17 21:34:47 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_matrix	ft_scale_matrix(int zoom)
+t_matrix	ft_scale_matrix(t_coord zoom)
 {
 	t_matrix	matrix;
 
-	matrix.a11 = (float)zoom;
+	matrix.a11 = (float)zoom.x;
 	matrix.a12 = 0;
 	matrix.a13 = 0;
 	matrix.a21 = 0;
-	matrix.a22 = (float)zoom;
+	matrix.a22 = (float)zoom.y;
 	matrix.a23 = 0;
 	matrix.a31 = 0;
 	matrix.a32 = 0;
-	matrix.a33 = (float)zoom;
+	matrix.a33 = (float)zoom.z;
 	return (matrix);
 }
 
