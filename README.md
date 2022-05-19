@@ -76,6 +76,8 @@ You can check yourself at the end of this step with the **function whis prints t
 - [X] Initialize the image
 - [X] Calculate the memory offset using the line length set by mlx_get_data_addr
 - [X] Put image to window
+- [X] Memory leak protection for minilibx fubctions
+- [X] Destroy image for protect memory leaks
 
 Useful source: https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 
@@ -193,6 +195,7 @@ The loop algorithm for connectiom points:
 - [X] Define matrix rotate y
 - [X] Define matrix rotate z
 - [X] Rotate map in isometric proection: 1) rotate; 2) scale; 3) translation.
+- [X] Zoom in case large altitude changes
 
 Useful source:
 * https://habr.com/ru/post/497808/
@@ -204,13 +207,7 @@ Useful source:
 
 - [X] Your program has to display the image in a window
 - [X] Pressing ESC must close the window and quit the program in a clean way
-- [X] Clicking on the cross on the window’s frame must close the window and quit the
-program in a clean way
+- [X] Clicking on the cross on the window’s frame must close the window and quit the program in a clean way
 
 	void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*f)(), void *param)
 
-## Current problems
-- [ ] Zoom in case large altitude changes
-- [ ] Memory leak protection for minilibx fubctions
-- [ ] Destroy image for protect memory leaks
-- [ ] The management of your window must remain smooth (changing to another window, minimizing, and so forth).

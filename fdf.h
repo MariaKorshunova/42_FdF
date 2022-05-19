@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/17 21:35:01 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/19 21:40:57 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ typedef struct s_fdf
 	int			row;
 	int			max_alt;
 	int			min_alt;
+	float		zoom;
 	t_img		img;
 	t_matrix	m;
 	t_coord		angle;
-	t_coord		zoom;
 }	t_fdf;
 
 typedef struct s_pars
@@ -107,8 +107,9 @@ void		ft_read_map(t_fdf *fdf, int argc, char **argv);
 
 /* map_define_value.c */
 void		ft_define_map_value(t_fdf *fdf, t_pars *parser, int nb_line);
-void		ft_define_zoom(t_fdf *fdf);
-void		ft_define_rotate_angle(t_fdf *fdf);
+
+/*  default_value.c */
+void		ft_default_value(t_fdf *fdf);
 
 /* map_error.c  */
 void		ft_exit_fdf(char error);
@@ -132,14 +133,15 @@ int			ft_atoi_base_16(t_fdf *fdf, t_pars *parser, char *str);
 void		ft_set_colors(t_fdf *fdf);
 void		ft_hex_to_rgb(int color, t_rgb *rgb);
 
-/* put_image.c */
+/* image.c */
 void		ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
+void		ft_init_image(t_fdf *fdf);
 
 /* line.c */
 void		ft_line_gradient_color(t_img *img, t_coord p0, t_coord p1);
 
 /* matrix_operations.c */
-t_matrix	ft_scale_matrix(t_coord zoom);
+t_matrix	ft_scale_matrix(float zoom);
 t_matrix	ft_identity_matrix(void);
 t_matrix	ft_matrix_multiply(t_matrix X, t_matrix Y);
 
