@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:26:19 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/19 21:40:57 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/20 19:37:02 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <limits.h>
 
 # include "mlx.h"
-# include "./libft/libft.h"
-# include "./get_next_line/get_next_line.h"
+# include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 
 /*  set default colors for lowest and highest altitude */
 # define LOW_COLOR 0x9900cc
