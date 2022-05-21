@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:40:23 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/20 21:22:48 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/21 18:20:19 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,12 @@ typedef struct s_fdf
 	int			row;
 	int			max_alt;
 	int			min_alt;
+	float		scale;
 	float		zoom;
 	t_img		img;
 	t_matrix	m;
 	t_coord		angle;
+	t_coord		translate;
 }	t_fdf;
 
 typedef struct s_pars

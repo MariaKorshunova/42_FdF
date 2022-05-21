@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:43:26 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/20 21:42:31 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/21 18:30:01 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,64 @@ static void	ft_new_image(t_fdf *fdf)
 	ft_draw(fdf);
 }
 
-static int	ft_key_hook(int keycode, t_fdf *fdf)
+static int	ft_key_hook_rotate(int keycode, t_fdf *fdf)
 {
-	if (keycode == 53)
-		ft_fdf_close(fdf);
-	else if (keycode == 7)
+	if (keycode == 7)
 		fdf->angle.x = fdf->angle.x + 1;
+	else if (keycode == 1)
+		fdf->angle.x = fdf->angle.x - 1;
+	else if (keycode == 16)
+		fdf->angle.y = fdf->angle.y + 1;
+	else if (keycode == 38)
+		fdf->angle.y = fdf->angle.y - 1;
+	else if (keycode == 6)
+		fdf->angle.z = fdf->angle.z + 1;
+	else if (keycode == 0)
+		fdf->angle.z = fdf->angle.z - 1;
 	else
 		return (0);
+	return (0);
+}
+
+static int	ft_key_hook_translate(int keycode, t_fdf *fdf)
+{
+	if (keycode == 125)
+		fdf->translate.y = fdf->translate.y + 2;
+	else if (keycode == 126)
+		fdf->translate.y = fdf->translate.y - 2;
+	else if (keycode == 123)
+		fdf->translate.x = fdf->translate.x - 2;
+	else if (keycode == 124)
+		fdf->translate.x = fdf->translate.x + 2;
+	else if (keycode == 8)
+	{
+		fdf->translate.x = 0;
+		fdf->translate.y = 0;
+	}
+	else
+		return (0);
+	return (0);
+}
+
+static int	ft_key_hook(int keycode, t_fdf *fdf)
+{
+	printf("%d", keycode);
+	if (keycode == 53)
+		ft_fdf_close(fdf);
+	ft_key_hook_rotate(keycode, fdf);
+	ft_key_hook_translate(keycode, fdf);
+	if (keycode == 69)
+		fdf->zoom = fdf->zoom + 0.01;
+	else if (keycode == 78)
+		fdf->zoom = fdf->zoom - 0.01;
+	else if (keycode == 11)
+		fdf->zoom = 1;
+	else if (keycode == 35)
+	{
+		fdf->angle.x = 0;
+		fdf->angle.y = 0;
+		fdf->angle.z = 0;
+	}
 	ft_new_image(fdf);
 	return (0);
 }

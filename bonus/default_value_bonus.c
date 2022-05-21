@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:41:30 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/20 19:58:23 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/21 18:20:35 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,9 @@ static void	ft_define_zoom(t_fdf *fdf)
 	zoom_x = ceil(0.6 * WIDTH / fdf->column);
 	zoom_y = ceil(0.6 * HEIGHT / fdf->row);
 	if (zoom_x <= zoom_y)
-		fdf->zoom = zoom_x;
+		fdf->scale = zoom_x;
 	else
-		fdf->zoom = zoom_y;
-}
-
-static void	ft_define_rotate_angle(t_fdf *fdf)
-{
-	fdf->angle.x = 0;
-	fdf->angle.y = 0;
-	fdf->angle.z = 0;
+		fdf->scale = zoom_y;
 }
 
 static void	ft_define_altitude_zoom(t_fdf *fdf)
@@ -61,6 +54,11 @@ static void	ft_define_altitude_zoom(t_fdf *fdf)
 void	ft_default_value(t_fdf *fdf)
 {
 	ft_define_zoom(fdf);
-	ft_define_rotate_angle(fdf);
 	ft_define_altitude_zoom(fdf);
+	fdf->angle.x = 0;
+	fdf->angle.y = 0;
+	fdf->angle.z = 0;
+	fdf->translate.x = 0;
+	fdf->translate.y = 0;
+	fdf->zoom = 1;
 }

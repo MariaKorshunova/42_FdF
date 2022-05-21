@@ -212,8 +212,8 @@ Useful source:
 	void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*f)(), void *param)
 
 ## Step 8. Bonus part
-- [ ] Include one extra projection (such as parallel or conic)!
-- [ ] Zoom in and out.
-- [ ] Translate your model.
-- [ ] Rotate your model.
-- [ ] Text tips
+- [X] Include one extra projection (such as parallel or conic)!
+- [X] Zoom in and out.
+- [X] Translate your model.
+- [X] Rotate your model.
+- [X] Text tips
