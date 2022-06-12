@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:41:47 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/21 19:22:48 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/24 20:04:14 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int	ft_define_point_coord(t_fdf *fdf, t_coord *p, int x, int y)
 	(*p).y = y - (fdf->row / 2);
 	temp_x = (*p).x;
 	(*p).x = fdf->m.a11 * (*p).x + fdf->m.a12 * (*p).y
-		+ fdf->m.a13 * fdf->map[y][x];
+		+ fdf->m.a13 * (int)(fdf->map[y][x] * fdf->zoom_alt);
 	(*p).y = fdf->m.a21 * temp_x + fdf->m.a22 * (*p).y
-		+ fdf->m.a23 * fdf->map[y][x];
+		+ fdf->m.a23 * (int)(fdf->map[y][x] * fdf->zoom_alt);
 	(*p).x = (*p).x + WIDTH / 2 + fdf->translate.x;
 	(*p).y = (*p).y + HEIGHT / 2 + fdf->translate.y;
 	(*p).c = fdf->color[y][x];
@@ -85,6 +85,8 @@ static void	ft_draw_tips(t_fdf *fdf)
 		"Translate map: keyboard arrows. Back to the center: <c>");
 	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 0, 90, 0xFFFFFF,
 		"Zoom map: <+/->. Back to the beginning: <b>");
+	mlx_string_put(fdf->mlx_ptr, fdf->win_ptr, 0, 105, 0xFFFFFF,
+		"Zoom altitude +/-: <m/n>");
 }
 
 void	ft_draw(t_fdf *fdf)

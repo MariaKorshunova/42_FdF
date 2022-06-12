@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:41:30 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/21 18:20:35 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/24 19:58:23 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,15 @@ static void	ft_define_zoom(t_fdf *fdf)
 
 static void	ft_define_altitude_zoom(t_fdf *fdf)
 {
-	int	i;
-	int	j;
 	int	max;
 
+	fdf->zoom_alt = 1;
 	if (fdf->column > fdf->row)
 		max = fdf->column;
 	else
 		max = fdf->row;
 	if (((float)(fdf->max_alt - fdf->min_alt) / max) > 1)
-	{
-		i = 0;
-		while (i < fdf->row)
-		{
-			j = 0;
-			while (j < fdf->column)
-			{
-				fdf->map[i][j] = (int)(round((float)(fdf->map[i][j]) * 0.1));
-				j++;
-			}
-			i++;
-		}
-	}
+		fdf->zoom_alt = 0.1;
 }
 
 void	ft_default_value(t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:40:23 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/21 18:20:19 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/06/11 15:59:04 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_fdf
 	int			min_alt;
 	float		scale;
 	float		zoom;
+	float		zoom_alt;
 	t_img		img;
 	t_matrix	m;
 	t_coord		angle;

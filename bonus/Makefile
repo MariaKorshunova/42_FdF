@@ -6,13 +6,13 @@
 #    By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 19:11:05 by jmabel            #+#    #+#              #
-#    Updated: 2022/05/21 17:50:11 by jmabel           ###   ########.fr        #
+#    Updated: 2022/06/11 15:51:20 by jmabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	../fdf_bonus
 
-HEADER		=	fdf.h
+HEADER		=	fdf_bonus.h
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
@@ -27,17 +27,20 @@ SRCS		=	fdf_bonus.c					map_read_bonus.c		map_error_bonus.c\
 				../get_next_line/get_next_line.c
 
 LIBFT		=	../libft/libft.a
-LMLX		=	/usr/local/lib/ -lmlx -framework OpenGL -framework Appkit
+LIBMLX		=	../libmlx/libmlx.a
 
 OBJ			=	$(SRCS:%.c=%.o)
 
 all			:	$(NAME)
 
-$(NAME)		:	$(OBJ) $(LIBFT)
-	$(CC) $(OBJ) -L ../libft -lft -L $(LMLX) -o $(NAME)
+$(NAME)		:	$(OBJ) $(LIBFT) $(LIBMLX)
+	$(CC) $(CFLAGS) $(LIBFT) $(LIBMLX) -framework OpenGL -framework AppKit $(OBJ) -o $(NAME)
 
 $(LIBFT)	:
 	make -C ../libft
+
+$(LIBMLX)	:
+	make -C ../libmlx
 
 %.o			:	%.c $(HEADER)
 	$(CC) $(CFLAGS) -c  $<  -o $@
@@ -47,6 +50,7 @@ $(LIBFT)	:
 clean		:
 	$(RM) $(OBJ) $(OBJ_CHECKER)
 	make clean -C ../libft
+	make clean -C ../libmlx
 
 fclean		: clean
 	$(RM) $(NAME) $(NAME_CHECKER)

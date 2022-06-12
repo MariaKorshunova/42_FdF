@@ -6,7 +6,7 @@
 /*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:43:26 by jmabel            #+#    #+#             */
-/*   Updated: 2022/05/21 18:30:01 by jmabel           ###   ########.fr       */
+/*   Updated: 2022/05/24 20:03:17 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static int	ft_key_hook_translate(int keycode, t_fdf *fdf)
 
 static int	ft_key_hook(int keycode, t_fdf *fdf)
 {
-	printf("%d", keycode);
 	if (keycode == 53)
 		ft_fdf_close(fdf);
 	ft_key_hook_rotate(keycode, fdf);
@@ -82,6 +81,10 @@ static int	ft_key_hook(int keycode, t_fdf *fdf)
 		fdf->angle.y = 0;
 		fdf->angle.z = 0;
 	}
+	else if (keycode == 46)
+		fdf->zoom_alt = fdf->zoom_alt + 0.1;
+	else if (keycode == 45)
+		fdf->zoom_alt = fdf->zoom_alt - 0.1;
 	ft_new_image(fdf);
 	return (0);
 }

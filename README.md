@@ -1,11 +1,13 @@
 # Fdf
-**Status:** in progress :-)
+**Status:** done
 
-**Grade:** not evaluated
+**Grade:** 125
 
 FdF school42
 
 Wireframe model. This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.
+
+![Alt text](./21.gif)
 
 ##	launch MacOS
 
@@ -13,8 +15,8 @@ Wireframe model. This project is about representing a landscape as a 3D object i
 	cd FdF
 	git clone https://github.com/MariaKorshunova/libft.git
 	git clone https://github.com/MariaKorshunova/get_next_line.git
-	make
-	./fdf you_map.fdf
+	make bonus
+	./fdf 21.fdf
 
 ## Project execution steps
 
@@ -217,3 +219,4 @@ Useful source:
 - [X] Translate your model.
 - [X] Rotate your model.
 - [X] Text tips
+- [X] Zoom altitude
